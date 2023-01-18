@@ -1,4 +1,5 @@
 const net = require('net');
+const { setTimeout } = require('timers/promises');
 const connect = function () {
   const conn = net.createConnection({
     host: '165.227.47.243',
@@ -13,6 +14,12 @@ const connect = function () {
 
   conn.on('connect', () => {
     conn.write('Name: Jun');
+    setInterval(() => {
+      conn.write('Move: up');
+    }, 500);
+    setInterval(() => {
+      conn.write('Move: right');
+    }, 1000 / 15);
   });
 
   return conn;
